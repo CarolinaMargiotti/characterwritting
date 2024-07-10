@@ -7,11 +7,44 @@ export default defineComponent({
 	components: {
 		Message,
 	},
+	data() {
+		return {
+			messages: [],
+			textInput: "",
+		};
+	},
+	methods: {
+		sendNewMessage() {
+			this.messages.push({ text: this.textInput, color: "#80609f" });
+			console.log(this.messages);
+		},
+	},
 });
 </script>
 
 <template>
 	<main>
-		<Message color="#f2830d"></Message>
+		<div>
+			<Message
+				class="mb-5"
+				v-for="(message, index) in messages"
+				:key="index"
+				:text="message.text"
+				:color="message.color"
+			></Message>
+		</div>
+		<form class="mt-10">
+			<textarea
+				name="messageText"
+				id=""
+				cols="30"
+				rows="10"
+				v-model="textInput"
+			></textarea>
+			<br />
+			<button class="bg-green-600 p-2" @click.prevent="sendNewMessage">
+				Send Message
+			</button>
+		</form>
 	</main>
 </template>
