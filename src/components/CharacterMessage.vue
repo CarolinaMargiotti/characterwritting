@@ -33,7 +33,7 @@ export default defineComponent({
 </script>
 <template>
 	<div class="grid grid-cols-3 items-center justify-items-end">
-		<div class="w-10ch p-1 rounded col-start-2 h-fit" :style="blockStyle">
+		<div class="py-1 px-2 rounded col-start-2 h-fit" :style="blockStyle">
 			{{ characterInfo.name }}
 		</div>
 		<img

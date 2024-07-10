@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<p class="rounded p-3" :style="blockStyle">
+	<p class="rounded px-3 py-1" :style="blockStyle">
 		{{ text }}
 	</p>
 </template>
