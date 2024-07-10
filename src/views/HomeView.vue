@@ -1,11 +1,13 @@
 <script>
 import { defineComponent } from "vue";
 import Message from "@/components/Message.vue";
+import CharacterMessage from "@/components/CharacterMessage.vue";
 
 export default defineComponent({
 	name: "HomeView",
 	components: {
 		Message,
+		CharacterMessage,
 	},
 	data() {
 		return {
@@ -24,14 +26,14 @@ export default defineComponent({
 
 <template>
 	<main>
-		<div>
-			<Message
+		<div class="w-30ch">
+			<CharacterMessage
 				class="mb-5"
 				v-for="(message, index) in messages"
 				:key="index"
 				:text="message.text"
 				:color="message.color"
-			></Message>
+			></CharacterMessage>
 		</div>
 		<form class="mt-10">
 			<textarea

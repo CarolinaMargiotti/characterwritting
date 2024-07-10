@@ -4,6 +4,7 @@ module.exports = {
 		extend: {
 			spacing: {
 				"30ch": "30ch",
+				"10ch": "10ch",
 			},
 		},
 	},
