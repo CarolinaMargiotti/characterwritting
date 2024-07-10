@@ -13,12 +13,37 @@ export default defineComponent({
 		return {
 			messages: [],
 			textInput: "",
+			characters: {
+				0: {
+					id: 0,
+					name: "Adventurer",
+					color: "#180002",
+					image: "adventurer.jpg",
+					details: "",
+				},
+				1: {
+					id: 1,
+					name: "Eerica",
+					color: "#ffb9be",
+					image: "Eerica.jpg",
+					details: "",
+				},
+			},
+			characterPicked: 0,
 		};
 	},
 	methods: {
 		sendNewMessage() {
-			this.messages.push({ text: this.textInput, color: "#80609f" });
-			console.log(this.messages);
+			this.messages.push({
+				text: this.textInput,
+				color: this.pickedCharacter.color,
+				characterInfo: this.pickedCharacter,
+			});
+		},
+	},
+	computed: {
+		pickedCharacter() {
+			return this.characters[this.characterPicked];
 		},
 	},
 });
@@ -33,6 +58,7 @@ export default defineComponent({
 				:key="index"
 				:text="message.text"
 				:color="message.color"
+				:characterInfo="message.characterInfo"
 			></CharacterMessage>
 		</div>
 		<form class="mt-10">
@@ -43,6 +69,23 @@ export default defineComponent({
 				rows="10"
 				v-model="textInput"
 			></textarea>
+			<br />
+			<div>
+				<div>
+					<input
+						type="radio"
+						name="character"
+						value="0"
+						v-model="characterPicked"
+					/><label for="">Adventurer</label>
+					<input
+						type="radio"
+						name="character"
+						value="1"
+						v-model="characterPicked"
+					/><label for="">Eerica</label>
+				</div>
+			</div>
 			<br />
 			<button class="bg-green-600 p-2" @click.prevent="sendNewMessage">
 				Send Message

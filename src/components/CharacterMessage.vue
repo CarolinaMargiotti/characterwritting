@@ -10,20 +10,10 @@ export default defineComponent({
 		Message,
 	},
 	props: {
-		// characterInfo: {},
+		characterInfo: {},
 		text: {
 			type: String,
 		},
-	},
-	data() {
-		return {
-			characterInfo: {
-				name: "Adventurer",
-				color: "#180002",
-				image: "adventurer.jpg",
-				details: "",
-			},
-		};
 	},
 	computed: {
 		textColor() {
@@ -35,6 +25,9 @@ export default defineComponent({
 				color: this.textColor,
 			};
 		},
+		imagePath() {
+			return `src/assets/characterImages/${this.characterInfo.id}.jpg`;
+		},
 	},
 });
 </script>
@@ -45,7 +38,7 @@ export default defineComponent({
 		</div>
 		<img
 			class="rounded-full h-14 w-fit"
-			src="../assets/CharacterImages/Adventurer.jpg"
+			:src="imagePath"
 			alt="Character image"
 		/>
 		<Message
