@@ -41,6 +41,7 @@ export default defineComponent({
 
 <template>
 	<div>
+		Chat Area
 		<div class="w-30ch">
 			<CharacterMessage
 				class="mb-5"

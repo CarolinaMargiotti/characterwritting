@@ -7,7 +7,7 @@ export default defineComponent({
 	data() {
 		return {
 			characterName: "",
-			characterColor: undefined,
+			characterColor: "#000",
 		};
 	},
 	methods: {

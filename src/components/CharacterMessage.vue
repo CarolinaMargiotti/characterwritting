@@ -9,6 +9,11 @@ export default defineComponent({
 	components: {
 		Message,
 	},
+	data() {
+		return {
+			isImageNotWorking: false,
+		};
+	},
 	props: {
 		characterInfo: {},
 		text: {
@@ -26,7 +31,14 @@ export default defineComponent({
 			};
 		},
 		imagePath() {
+			if (this.isImageNotWorking)
+				return `src/assets/characterImages/default.jpg`;
 			return `src/assets/characterImages/${this.characterInfo.id}.jpg`;
+		},
+	},
+	methods: {
+		handleImageError() {
+			this.isImageNotWorking = true;
 		},
 	},
 });
@@ -40,6 +52,7 @@ export default defineComponent({
 			class="rounded-full h-14 w-fit"
 			:src="imagePath"
 			alt="Character image"
+			@error="handleImageError"
 		/>
 		<Message
 			class="col-span-3 mt-2"
