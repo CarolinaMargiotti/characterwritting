@@ -1,10 +1,11 @@
 <script>
 import { defineComponent } from "vue";
+
 import Message from "@/components/Message.vue";
 import CharacterMessage from "@/components/CharacterMessage.vue";
 
 export default defineComponent({
-	name: "HomeView",
+	name: "ChatArea",
 	components: {
 		Message,
 		CharacterMessage,
@@ -50,7 +51,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<main>
+	<div>
 		<div class="w-30ch">
 			<CharacterMessage
 				class="mb-5"
@@ -91,5 +92,5 @@ export default defineComponent({
 				Send Message
 			</button>
 		</form>
-	</main>
+	</div>
 </template>
