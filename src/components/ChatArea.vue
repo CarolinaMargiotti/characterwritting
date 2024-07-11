@@ -3,6 +3,7 @@ import { defineComponent } from "vue";
 
 import Message from "@/components/Message.vue";
 import CharacterMessage from "@/components/CharacterMessage.vue";
+import { Characters } from "@/util/Characters";
 
 export default defineComponent({
 	name: "ChatArea",
@@ -14,24 +15,12 @@ export default defineComponent({
 		return {
 			messages: [],
 			textInput: "",
-			characters: {
-				0: {
-					id: 0,
-					name: "Adventurer",
-					color: "#180002",
-					image: "adventurer.jpg",
-					details: "",
-				},
-				1: {
-					id: 1,
-					name: "Eerica",
-					color: "#ffb9be",
-					image: "Eerica.jpg",
-					details: "",
-				},
-			},
+			characters: {},
 			characterPicked: 0,
 		};
+	},
+	mounted() {
+		this.characters = Characters;
 	},
 	methods: {
 		sendNewMessage() {
@@ -72,23 +61,17 @@ export default defineComponent({
 			></textarea>
 			<br />
 			<div>
-				<div>
+				<div v-for="(character, index) in characters" :key="index">
 					<input
 						type="radio"
 						name="character"
-						value="0"
+						:value="character.id"
 						v-model="characterPicked"
-					/><label for="">Adventurer</label>
-					<input
-						type="radio"
-						name="character"
-						value="1"
-						v-model="characterPicked"
-					/><label for="">Eerica</label>
+					/><label for="character">{{ character.name }}</label>
 				</div>
 			</div>
 			<br />
-			<button class="bg-green-600 p-2" @click.prevent="sendNewMessage">
+			<button class="bg-quarternary p-2" @click.prevent="sendNewMessage">
 				Send Message
 			</button>
 		</form>

@@ -6,6 +6,12 @@ module.exports = {
 				"30ch": "30ch",
 				"10ch": "10ch",
 			},
+			colors: {
+				primary: "#155e75",
+				secondary: "#563635",
+				tertiary: "#DDDBF1",
+				quarternary: "#78C091",
+			},
 		},
 	},
 	plugins: [],
