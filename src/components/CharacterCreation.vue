@@ -21,16 +21,22 @@ export default defineComponent({
 				color: this.characterColor,
 			});
 		},
+		handleImageUpload(event) {
+			const file = event.target.files[0];
+		},
 	},
 });
 </script>
 
 <template>
 	<div class="bg-secondary p-4 text-bold font-bold">
-		<p class="text-tertiary">Criar personagem</p>
+		<p class="text-tertiary">Create Character</p>
 		<form class="m-2 flex flex-col">
 			<label>Nome</label>
 			<input type="text" v-model="characterName" />
+			<br />
+			<label>Image</label>
+			<input type="file" accept="image/*" @change="handleImageUpload" />
 			<br />
 			<label>Cor</label>
 			<input type="color" v-model="characterColor" />
