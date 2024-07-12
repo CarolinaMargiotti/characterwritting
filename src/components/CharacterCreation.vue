@@ -1,9 +1,13 @@
 <script>
 import { defineComponent } from "vue";
 import { addCharacter } from "@/util/Characters";
+import Button from "@/components/Button.vue";
 
 export default defineComponent({
 	name: "CharacterCreation",
+	components: {
+		Button,
+	},
 	data() {
 		return {
 			characterName: "",
@@ -31,12 +35,7 @@ export default defineComponent({
 			<label>Cor</label>
 			<input type="color" v-model="characterColor" />
 			<br />
-			<button
-				class="bg-quarternary p-2 text-black"
-				@click.prevent="createCharacter"
-			>
-				Create Character
-			</button>
+			<Button text="Create Character" @clicked="createCharacter" />
 		</form>
 	</div>
 </template>

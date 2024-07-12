@@ -604,10 +604,6 @@ video {
   width: fit-content;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -677,19 +673,14 @@ video {
   font-weight: 700;
 }
 
-.text-tertiary {
-  --tw-text-opacity: 1;
-  color: rgb(221 219 241 / var(--tw-text-opacity));
-}
-
-.text-secondary {
-  --tw-text-opacity: 1;
-  color: rgb(86 54 53 / var(--tw-text-opacity));
-}
-
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-tertiary {
+  --tw-text-opacity: 1;
+  color: rgb(221 219 241 / var(--tw-text-opacity));
 }
 
 *,

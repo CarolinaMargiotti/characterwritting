@@ -4,12 +4,14 @@ import { defineComponent } from "vue";
 import Message from "@/components/Message.vue";
 import CharacterMessage from "@/components/CharacterMessage.vue";
 import { Characters } from "@/util/Characters";
+import Button from "./Button.vue";
 
 export default defineComponent({
 	name: "ChatArea",
 	components: {
 		Message,
 		CharacterMessage,
+		Button,
 	},
 	data() {
 		return {
@@ -72,9 +74,7 @@ export default defineComponent({
 				</div>
 			</div>
 			<br />
-			<button class="bg-quarternary p-2" @click.prevent="sendNewMessage">
-				Send Message
-			</button>
+			<Button text="Send Message" @clicked="sendNewMessage" />
 		</form>
 	</div>
 </template>
