@@ -27,12 +27,12 @@ export default defineComponent({
 
 <template>
 	<div class="bg-secondary p-4 text-bold font-bold">
-		<p class="text-tertiary">Criar personagem</p>
+		<p class="text-tertiary">Create Character</p>
 		<form class="m-2 flex flex-col">
-			<label>Nome</label>
+			<label>Name</label>
 			<input type="text" v-model="characterName" />
 			<br />
-			<label>Cor</label>
+			<label>Color</label>
 			<input type="color" v-model="characterColor" />
 			<br />
 			<Button text="Create Character" @clicked="createCharacter" />
