@@ -26,3 +26,12 @@ export const getCharacterById = async (id) => {
 		throw error;
 	}
 };
+
+export const addNewCharacter = async (characterData) => {
+	try {
+		await apiClient.post("/character/create", characterData);
+	} catch (error) {
+		console.error("Error fetching characters:", error);
+		throw error;
+	}
+};

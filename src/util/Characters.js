@@ -1,17 +1,11 @@
-import { reactive } from "vue";
-import { getAllCharacters } from "@/util/apiService";
+import { getAllCharacters, addNewCharacter } from "@/util/apiService";
 
-export const Characters = reactive({});
-
-let lastId = 1;
-
-export function addCharacter(newCharacter) {
-	lastId++;
-	Characters[lastId] = {
-		id: lastId,
-		image: "default.jpg",
-		...newCharacter,
-	};
+export async function addCharacter(newCharacter) {
+	try {
+		await addNewCharacter(newCharacter);
+	} catch (error) {
+		console.log(error.message);
+	}
 }
 
 export async function getCharactersList() {
