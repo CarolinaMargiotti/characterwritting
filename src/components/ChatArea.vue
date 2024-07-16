@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 
 import Message from "@/components/Message.vue";
 import CharacterMessage from "@/components/CharacterMessage.vue";
-import { Characters } from "@/util/Characters";
+import { getCharactersList } from "@/util/Characters";
 import Button from "./Button.vue";
 
 export default defineComponent({
@@ -21,8 +21,8 @@ export default defineComponent({
 			characterPicked: 0,
 		};
 	},
-	mounted() {
-		this.characters = Characters;
+	async mounted() {
+		this.characters = await getCharactersList();
 	},
 	methods: {
 		sendNewMessage() {

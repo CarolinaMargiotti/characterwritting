@@ -1,21 +1,7 @@
 import { reactive } from "vue";
+import { getAllCharacters } from "@/util/apiService";
 
-export const Characters = reactive({
-	0: {
-		id: 0,
-		name: "Adventurer",
-		color: "#180002",
-		image: "adventurer.jpg",
-		details: "",
-	},
-	1: {
-		id: 1,
-		name: "Eerica",
-		color: "#ffb9be",
-		image: "Eerica.jpg",
-		details: "",
-	},
-});
+export const Characters = reactive({});
 
 let lastId = 1;
 
@@ -28,6 +14,11 @@ export function addCharacter(newCharacter) {
 	};
 }
 
-export function getCharactersList() {
-	return Characters;
+export async function getCharactersList() {
+	try {
+		const charactersRetrieved = await getAllCharacters();
+		return charactersRetrieved;
+	} catch (error) {
+		console.log(error.message);
+	}
 }
