@@ -19,7 +19,9 @@ export default defineComponent({
 			addCharacter({
 				name: this.characterName,
 				color: this.characterColor,
+				age: 23,
 			});
+			location.reload();
 		},
 		handleImageUpload(event) {
 			const file = event.target.files[0];
@@ -32,13 +34,13 @@ export default defineComponent({
 	<div class="bg-secondary p-4 text-bold font-bold">
 		<p class="text-tertiary">Create Character</p>
 		<form class="m-2 flex flex-col">
-			<label>Nome</label>
+			<label>Name</label>
 			<input type="text" v-model="characterName" />
 			<br />
 			<label>Image</label>
 			<input type="file" accept="image/*" @change="handleImageUpload" />
 			<br />
-			<label>Cor</label>
+			<label>Color</label>
 			<input type="color" v-model="characterColor" />
 			<br />
 			<Button text="Create Character" @clicked="createCharacter" />
