@@ -19,7 +19,9 @@ export default defineComponent({
 			addCharacter({
 				name: this.characterName,
 				color: this.characterColor,
+				age: 23,
 			});
+			location.reload();
 		},
 	},
 });
