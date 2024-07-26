@@ -12,6 +12,7 @@ export default defineComponent({
 		return {
 			characterName: "",
 			characterColor: "#000",
+			characterImage: null,
 		};
 	},
 	methods: {
@@ -20,11 +21,13 @@ export default defineComponent({
 				name: this.characterName,
 				color: this.characterColor,
 				age: 23,
+				image: this.characterImage,
 			});
 			location.reload();
 		},
 		handleImageUpload(event) {
 			const file = event.target.files[0];
+			this.characterImage = file;
 		},
 	},
 });
