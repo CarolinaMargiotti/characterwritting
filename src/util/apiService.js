@@ -29,7 +29,14 @@ export const getCharacterById = async (id) => {
 
 export const addNewCharacter = async (characterData) => {
 	try {
-		await apiClient.post("/character/create", characterData);
+		const body = {
+			name: characterData.name,
+			image: characterData.image,
+			age: characterData.age,
+			color: characterData.color
+		}
+
+		await apiClient.post("/character/create", body);
 	} catch (error) {
 		console.error("Error fetching characters:", error);
 		throw error;
