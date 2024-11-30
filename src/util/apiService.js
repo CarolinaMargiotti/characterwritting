@@ -11,6 +11,7 @@ export const getAllCharacters = async () => {
 	try {
 		const response = await apiClient.get("/character/getall");
 		return response.data;
+
 	} catch (error) {
 		console.error("Error fetching characters:", error);
 		throw error;

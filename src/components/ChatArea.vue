@@ -64,11 +64,11 @@ export default defineComponent({
 			></textarea>
 			<br />
 			<div>
-				<div v-for="(character, index) in characters" :key="index">
+				<div v-for="(character, id) in characters" :key="id">
 					<input
 						type="radio"
 						name="character"
-						:value="character.id"
+						:value="id"
 						v-model="characterPicked"
 					/><label for="character">{{ character.name }}</label>
 				</div>
