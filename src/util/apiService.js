@@ -29,17 +29,14 @@ export const getCharacterById = async (id) => {
 
 export const addNewCharacter = async (characterData) => {
 	try {
-		const formData = new FormData();
-		formData.append("name", characterData.name);
-		formData.append("age", characterData.age);
-		formData.append("image", characterData.image);
-		formData.append("color", characterData.color);
+		const body = {
+			name: characterData.name,
+			image: characterData.image,
+			age: characterData.age,
+			color: characterData.color
+		}
 
-		await apiClient.post("/character/create", formData, {
-			headers: {
-				"Content-Type": "multipart/form-data",
-			},
-		});
+		await apiClient.post("/character/create", body);
 	} catch (error) {
 		console.error("Error fetching characters:", error);
 		throw error;

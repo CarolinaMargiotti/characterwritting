@@ -34,7 +34,13 @@ export default defineComponent({
 
 				reader.onload = function (e) {
 					const base64String = e.target.result.split(',')[1];
-					this.characterImage = base64String;
+					const fileType = file.type;
+
+					this.characterImage = {
+						base64: base64String,
+						type: fileType,
+					};
+
 					this.imageIsLoading = false;
 				}.bind(this);
 
