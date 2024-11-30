@@ -13,6 +13,7 @@ export default defineComponent({
 			characterName: "",
 			characterColor: "#000",
 			characterImage: null,
+			imageIsLoading: false
 		};
 	},
 	methods: {
@@ -27,7 +28,21 @@ export default defineComponent({
 		},
 		handleImageUpload(event) {
 			const file = event.target.files[0];
-			this.characterImage = file;
+			if(file){
+				const reader = new FileReader();
+				this.imageIsLoading = true;
+
+				reader.onload = function (e) {
+					const base64String = e.target.result.split(',')[1];
+					this.characterImage = base64String;
+					this.imageIsLoading = false;
+				}.bind(this);
+
+				reader.onerror = function (e){
+					this.imageIsLoading = false;
+				}.bind(this);
+				reader.readAsDataURL(file);
+			}
 		},
 	},
 });
@@ -46,6 +61,7 @@ export default defineComponent({
 			<label>Color</label>
 			<input type="color" v-model="characterColor" />
 			<br />
+			{{imageIsLoading}}
 			<Button text="Create Character" @clicked="createCharacter" />
 		</form>
 	</div>
