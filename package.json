@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+  		"dev": "concurrently \"vite\" \"npm run watch:css\"",
 		"build": "vite build",
 		"preview": "vite preview",
 		"build:css": "tailwindcss -i ./src/assets/input.css -o ./src/assets/output.css",

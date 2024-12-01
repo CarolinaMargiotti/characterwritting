@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-green-500 overflow-auto h-32">
+    <div class="overflow-auto h-64">
         <CharacterMessage
             v-for="(message, index) in messages"
             class="mb-5"
