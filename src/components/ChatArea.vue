@@ -7,8 +7,8 @@
 				v-for="(message, index) in messages"
 				:key="index"
 				:text="message.text"
-				:color="message.color"
-				:characterInfo="message.characterInfo"
+				:color="characterInfoById(message.characterId).color"
+				:characterInfo="characterInfoById(message.characterId)"
 			></CharacterMessage>
 		</div>
 		<form class="mt-10">
@@ -21,7 +21,6 @@
 			></textarea>
 			<br />
 			<div>
-				{{ selected }}
 				<select v-model="selected">
 					<option v-for="(character,index) in characters" :key="index" :value="character.id">{{ character.name }}</option>
 				</select>
@@ -32,17 +31,20 @@
 	</div>
 </template>
 <script setup>
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref } from "vue";
 
 import CharacterMessage from "@/components/CharacterMessage.vue";
 import Button from "./Button.vue";
 import { useCharacterStore } from "@/stores/characterStore";
+import { useMessageStore } from "@/stores/messagesStore";
 import { storeToRefs } from "pinia";
 
 const characterStore = useCharacterStore();
 const {characters} = storeToRefs(characterStore);
 
-const messages = ref([]);
+const messageStore = useMessageStore();
+const {messages} = storeToRefs(messageStore);
+
 const textInput = ref("");
 const selected = ref(0);
 
@@ -51,14 +53,10 @@ onMounted(async ()=>{
 })
 
 const sendNewMessage = () =>{
-	messages.value.push({
-		text: textInput.value,
-		color: pickedCharacter.value.color,
-		characterInfo: pickedCharacter.value,
-	});
+	messageStore.newMessage(textInput.value,selected.value)
 }
 
-const pickedCharacter = computed(()=>{
-	return {...characters.value[selected.value]};
-})
+const characterInfoById = (id)=>{
+	return characters.value[id];
+}
 </script>

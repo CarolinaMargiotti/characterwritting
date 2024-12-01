@@ -35,5 +35,6 @@ export const useCharacterStore = defineStore('characterStore',{
                 console.error("Error fetching characters:", error);
                 throw error;
             }
-        }    }
+        }
+    }
 })
