@@ -5,6 +5,7 @@ module.exports = {
 			spacing: {
 				"30ch": "30ch",
 				"10ch": "10ch",
+				"50vh":"50vh"
 			},
 			colors: {
 				primary: "#155e75",

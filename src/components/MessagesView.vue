@@ -1,5 +1,5 @@
 <template>
-    <div class="overflow-auto h-64">
+    <div ref="chatMessage" class="overflow-auto p-3 h-50vh">
         <CharacterMessage
             v-for="(message, index) in messages"
             class="mb-5"
@@ -11,6 +11,8 @@
         </div>
 </template>
 <script setup>
+import { onUpdated,ref } from 'vue';
+
 import { storeToRefs } from 'pinia';
 import { useMessageStore } from '@/stores/messagesStore';
 import { useCharacterStore } from "@/stores/characterStore";
@@ -24,4 +26,13 @@ const {messages} = storeToRefs(messagesStore)
 const characterInfoById = (id)=>{
 	return characterStore.getCharacterById(id);
 }
+
+const chatMessage = ref(null)
+const scrollToBottom = () => {
+    chatMessage.value.scrollTop = chatMessage.value.scrollHeight;
+}
+
+onUpdated(()=>{
+    scrollToBottom();
+})
 </script>
