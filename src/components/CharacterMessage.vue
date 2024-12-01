@@ -1,15 +1,16 @@
 <template>
-	<div class="grid grid-cols-3 items-center justify-items-end">
-		<div class="py-1 px-2 rounded col-start-2 h-fit" :style="blockStyle">
-			{{ characterInfo.name }}
-		</div>
-		<img
+	<div class="flex flex-col items-end gap-1">
+		<div class="flex items-center gap-2">
+			<div class="py-1 px-2 rounded col-start-2 h-fit" :style="blockStyle">
+				{{ characterInfo.name }}
+			</div>
+			<img
 			class="rounded-full h-14 w-fit"
 			:src="imagePath"
 			alt="Character image"
-		/>
+			/>
+		</div>
 		<Message
-			class="col-span-3 mt-2"
 			:color="characterInfo.color"
 			:text="text"
 		></Message>

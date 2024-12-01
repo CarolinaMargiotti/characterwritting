@@ -4,9 +4,11 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+  		"dev": "concurrently \"vite\" \"npm run watch:css\"",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"build:css": "tailwindcss -i ./src/assets/input.css -o ./src/assets/output.css",
+		"watch:css": "tailwindcss -i ./src/assets/input.css -o ./src/assets/output.css --watch"
 	},
 	"dependencies": {
 		"axios": "^1.7.2",

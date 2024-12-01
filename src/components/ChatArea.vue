@@ -1,49 +1,40 @@
 <template>
-	<div>
+	<div class="w-96 flex-column  justify-items-center p-3">
 		Chat Area
-		<div class="w-30ch">
-			<CharacterMessage
-				class="mb-5"
-				v-for="(message, index) in messages"
-				:key="index"
-				:text="message.text"
-				:color="message.color"
-				:characterInfo="message.characterInfo"
-			></CharacterMessage>
+		<div class="w-full">
+			<MessagesView />
 		</div>
-		<form class="mt-10">
+		<form class="mt-2 flex justify-center gap-1">
+			<select v-model="selected" class="p-2">
+				<option v-for="(character,index) in characters" :key="index" :value="character.id">{{ character.name }}</option>
+			</select>
 			<textarea
 				name="messageText"
+				class="p-2"
 				id=""
 				cols="30"
-				rows="5"
-				v-model="textInput"
+				v-model="messageText"
 			></textarea>
-			<br />
-			<div>
-				{{ selected }}
-				<select v-model="selected">
-					<option v-for="(character,index) in characters" :key="index" :value="character.id">{{ character.name }}</option>
-				</select>
-			</div>
-			<br />
 			<Button text="Send Message" @clicked="sendNewMessage" />
 		</form>
 	</div>
 </template>
 <script setup>
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref } from "vue";
 
-import CharacterMessage from "@/components/CharacterMessage.vue";
+import MessagesView from "./MessagesView.vue";
 import Button from "./Button.vue";
 import { useCharacterStore } from "@/stores/characterStore";
+import { useMessageStore } from "@/stores/messagesStore";
 import { storeToRefs } from "pinia";
 
 const characterStore = useCharacterStore();
 const {characters} = storeToRefs(characterStore);
 
-const messages = ref([]);
-const textInput = ref("");
+const messageStore = useMessageStore();
+const {messages} = storeToRefs(messageStore);
+
+const messageText = ref("");
 const selected = ref(0);
 
 onMounted(async ()=>{
@@ -51,14 +42,10 @@ onMounted(async ()=>{
 })
 
 const sendNewMessage = () =>{
-	messages.value.push({
-		text: textInput.value,
-		color: pickedCharacter.value.color,
-		characterInfo: pickedCharacter.value,
-	});
+	messageStore.newMessage(messageText.value,selected.value)
 }
 
-const pickedCharacter = computed(()=>{
-	return {...characters.value[selected.value]};
-})
+const characterInfoById = (id)=>{
+	return characterStore.getCharacterById(id);
+}
 </script>

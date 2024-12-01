@@ -20,6 +20,9 @@ export const useCharacterStore = defineStore('characterStore',{
                 throw error;
             }
         },
+        getCharacterById(id){
+            return this.characters[id];
+        },
         async addNewCharacter(characterData){
             try {
                 const body = {
@@ -35,5 +38,6 @@ export const useCharacterStore = defineStore('characterStore',{
                 console.error("Error fetching characters:", error);
                 throw error;
             }
-        }    }
+        }
+    }
 })
