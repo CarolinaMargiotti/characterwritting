@@ -1,46 +1,3 @@
-<script>
-import { defineComponent } from "vue";
-
-import Message from "@/components/Message.vue";
-import CharacterMessage from "@/components/CharacterMessage.vue";
-import { getCharactersList } from "@/util/Characters";
-import Button from "./Button.vue";
-
-export default defineComponent({
-	name: "ChatArea",
-	components: {
-		Message,
-		CharacterMessage,
-		Button,
-	},
-	data() {
-		return {
-			messages: [],
-			textInput: "",
-			characters: {},
-			characterPicked: 0,
-		};
-	},
-	async mounted() {
-		this.characters = await getCharactersList();
-	},
-	methods: {
-		sendNewMessage() {
-			this.messages.push({
-				text: this.textInput,
-				color: this.pickedCharacter.color,
-				characterInfo: this.pickedCharacter,
-			});
-		},
-	},
-	computed: {
-		pickedCharacter() {
-			return this.characters[this.characterPicked];
-		},
-	},
-});
-</script>
-
 <template>
 	<div>
 		Chat Area
@@ -64,11 +21,11 @@ export default defineComponent({
 			></textarea>
 			<br />
 			<div>
-				<div v-for="(character, id) in characters" :key="id">
+				<div v-for="(character,index) in characters" :key="index">
 					<input
 						type="radio"
 						name="character"
-						:value="id"
+						:value="character.id"
 						v-model="characterPicked"
 					/><label for="character">{{ character.name }}</label>
 				</div>
@@ -78,3 +35,31 @@ export default defineComponent({
 		</form>
 	</div>
 </template>
+<script setup>
+import { onMounted, ref, computed } from "vue";
+
+import CharacterMessage from "@/components/CharacterMessage.vue";
+import { getCharactersList } from "@/util/Characters";
+import Button from "./Button.vue";
+
+const messages = ref([]);
+const textInput = ref("");
+const characters = ref({});
+const characterPicked = ref(0);
+
+onMounted(async ()=>{
+	characters.value = await getCharactersList();
+})
+
+const sendNewMessage = () =>{
+	messages.value.push({
+		text: textInput.value,
+		color: pickedCharacter.color,
+		characterInfo: pickedCharacter,
+	});
+}
+
+const pickedCharacter = computed(()=>{
+	return characters.value[characterPicked.value];
+})
+</script>

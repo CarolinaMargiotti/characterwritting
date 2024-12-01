@@ -1,59 +1,3 @@
-<script>
-import { defineComponent } from "vue";
-import { addCharacter } from "@/util/Characters";
-import Button from "@/components/Button.vue";
-
-export default defineComponent({
-	name: "CharacterCreation",
-	components: {
-		Button,
-	},
-	data() {
-		return {
-			characterName: "",
-			characterColor: "#000",
-			characterImage: null,
-			imageIsLoading: false
-		};
-	},
-	methods: {
-		createCharacter() {
-			addCharacter({
-				name: this.characterName,
-				color: this.characterColor,
-				age: 23,
-				image: this.characterImage,
-			});
-			location.reload();
-		},
-		handleImageUpload(event) {
-			const file = event.target.files[0];
-			if(file){
-				const reader = new FileReader();
-				this.imageIsLoading = true;
-
-				reader.onload = function (e) {
-					const base64String = e.target.result.split(',')[1];
-					const fileType = file.type;
-
-					this.characterImage = {
-						base64: base64String,
-						type: fileType,
-					};
-
-					this.imageIsLoading = false;
-				}.bind(this);
-
-				reader.onerror = function (e){
-					this.imageIsLoading = false;
-				}.bind(this);
-				reader.readAsDataURL(file);
-			}
-		},
-	},
-});
-</script>
-
 <template>
 	<div class="bg-secondary p-4 text-bold font-bold">
 		<p class="text-tertiary">Create Character</p>
@@ -72,3 +16,49 @@ export default defineComponent({
 		</form>
 	</div>
 </template>
+<script setup>
+import { ref } from "vue";
+import { addCharacter } from "@/util/Characters";
+import Button from "@/components/Button.vue";
+
+const characterName = ref("");
+const characterColor = ref("#000");
+const characterImage = ref(null);
+const imageIsLoading = ref(false);
+
+const createCharacter = () => {
+	addCharacter({
+		name: characterName.value,
+		color: characterColor.value,
+		age: 23,
+		image: characterImage.value,
+	});
+	location.reload();
+}
+
+const handleImageUpload = (event) =>{
+	const file = event.target.files[0];
+	if(file){
+		const reader = new FileReader();
+		imageIsLoading.value = true;
+
+		reader.onload = function (e) {
+			const base64String = e.target.result.split(',')[1];
+			const fileType = file.type;
+
+			characterImage.value = {
+				base64: base64String,
+				type: fileType,
+			};
+
+			imageIsLoading.value = false;
+		}.bind(this);
+
+		reader.onerror = function (e){
+			imageIsLoading.value = false;
+		}.bind(this);
+		reader.readAsDataURL(file);
+	}
+}
+</script>
+
