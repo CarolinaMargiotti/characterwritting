@@ -4,21 +4,17 @@
 		<div class="w-full">
 			<MessagesView />
 		</div>
-		<form class="mt-10">
+		<form class="mt-2 flex justify-center gap-1">
+			<select v-model="selected" class="p-2">
+				<option v-for="(character,index) in characters" :key="index" :value="character.id">{{ character.name }}</option>
+			</select>
 			<textarea
 				name="messageText"
+				class="p-2"
 				id=""
 				cols="30"
-				rows="5"
 				v-model="messageText"
 			></textarea>
-			<br />
-			<div>
-				<select v-model="selected">
-					<option v-for="(character,index) in characters" :key="index" :value="character.id">{{ character.name }}</option>
-				</select>
-			</div>
-			<br />
 			<Button text="Send Message" @clicked="sendNewMessage" />
 		</form>
 	</div>

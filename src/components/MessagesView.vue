@@ -1,5 +1,5 @@
 <template>
-    <div ref="chatMessage" class="overflow-auto px-3 h-45vh">
+    <div ref="chatMessage" class="overflow-auto px-3 h-70vh">
         <CharacterMessage
             v-for="(message, index) in messages"
             class="mb-5"

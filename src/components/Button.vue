@@ -1,5 +1,5 @@
 <template>
-	<button class="bg-quarternary p-2 text-black" @click.prevent="clicked">
+	<button class="bg-quarternary p-2 text-black text-sm" @click.prevent="clicked">
 		{{ text }}
 	</button>
 </template>
