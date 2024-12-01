@@ -51,8 +51,6 @@ onMounted(async ()=>{
 })
 
 const sendNewMessage = () =>{
-	console.log(pickedCharacter);
-
 	messages.value.push({
 		text: textInput.value,
 		color: pickedCharacter.value.color,
