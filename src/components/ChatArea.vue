@@ -21,14 +21,10 @@
 			></textarea>
 			<br />
 			<div>
-				<div v-for="(character,index) in characters" :key="index">
-					<input
-						type="radio"
-						name="character"
-						:value="character.id"
-						v-model="characterPicked"
-					/><label for="character">{{ character.name }}</label>
-				</div>
+				{{ selected }}
+				<select v-model="selected">
+					<option v-for="(character,index) in characters" :key="index" :value="character.id">{{ character.name }}</option>
+				</select>
 			</div>
 			<br />
 			<Button text="Send Message" @clicked="sendNewMessage" />
@@ -48,7 +44,7 @@ const {characters} = storeToRefs(characterStore);
 
 const messages = ref([]);
 const textInput = ref("");
-const characterPicked = ref(0);
+const selected = ref(0);
 
 onMounted(async ()=>{
 	await characterStore.getAllCharacters();
@@ -63,6 +59,6 @@ const sendNewMessage = () =>{
 }
 
 const pickedCharacter = computed(()=>{
-	return characters.value[characterPicked.value];
+	return characters.value[selected.value];
 })
 </script>
