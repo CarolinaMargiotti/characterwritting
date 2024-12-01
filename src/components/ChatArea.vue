@@ -16,7 +16,7 @@
 				name="messageText"
 				id=""
 				cols="30"
-				rows="10"
+				rows="5"
 				v-model="textInput"
 			></textarea>
 			<br />
@@ -51,14 +51,16 @@ onMounted(async ()=>{
 })
 
 const sendNewMessage = () =>{
+	console.log(pickedCharacter);
+
 	messages.value.push({
 		text: textInput.value,
-		color: pickedCharacter.color,
-		characterInfo: pickedCharacter,
+		color: pickedCharacter.value.color,
+		characterInfo: pickedCharacter.value,
 	});
 }
 
 const pickedCharacter = computed(()=>{
-	return characters.value[selected.value];
+	return {...characters.value[selected.value]};
 })
 </script>
