@@ -20,6 +20,9 @@ export const useCharacterStore = defineStore('characterStore',{
                 throw error;
             }
         },
+        getCharacterById(id){
+            return this.characters[id];
+        },
         async addNewCharacter(characterData){
             try {
                 const body = {

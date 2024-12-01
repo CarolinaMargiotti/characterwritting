@@ -2,14 +2,7 @@
 	<div>
 		Chat Area
 		<div class="w-30ch">
-			<CharacterMessage
-				class="mb-5"
-				v-for="(message, index) in messages"
-				:key="index"
-				:text="message.text"
-				:color="characterInfoById(message.characterId).color"
-				:characterInfo="characterInfoById(message.characterId)"
-			></CharacterMessage>
+			<MessagesView />
 		</div>
 		<form class="mt-10">
 			<textarea
@@ -33,7 +26,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 
-import CharacterMessage from "@/components/CharacterMessage.vue";
+import MessagesView from "./MessagesView.vue";
 import Button from "./Button.vue";
 import { useCharacterStore } from "@/stores/characterStore";
 import { useMessageStore } from "@/stores/messagesStore";
@@ -57,6 +50,6 @@ const sendNewMessage = () =>{
 }
 
 const characterInfoById = (id)=>{
-	return characters.value[id];
+	return characterStore.getCharacterById(id);
 }
 </script>
