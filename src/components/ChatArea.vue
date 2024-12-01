@@ -17,7 +17,7 @@
 				id=""
 				cols="30"
 				rows="5"
-				v-model="textInput"
+				v-model="messageText"
 			></textarea>
 			<br />
 			<div>
@@ -45,7 +45,7 @@ const {characters} = storeToRefs(characterStore);
 const messageStore = useMessageStore();
 const {messages} = storeToRefs(messageStore);
 
-const textInput = ref("");
+const messageText = ref("");
 const selected = ref(0);
 
 onMounted(async ()=>{
@@ -53,7 +53,7 @@ onMounted(async ()=>{
 })
 
 const sendNewMessage = () =>{
-	messageStore.newMessage(textInput.value,selected.value)
+	messageStore.newMessage(messageText.value,selected.value)
 }
 
 const characterInfoById = (id)=>{
