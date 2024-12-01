@@ -21,11 +21,11 @@
 			></textarea>
 			<br />
 			<div>
-				<div v-for="(character, id) in characters" :key="id">
+				<div v-for="(character,index) in characters" :key="index">
 					<input
 						type="radio"
 						name="character"
-						:value="id"
+						:value="character.id"
 						v-model="characterPicked"
 					/><label for="character">{{ character.name }}</label>
 				</div>
