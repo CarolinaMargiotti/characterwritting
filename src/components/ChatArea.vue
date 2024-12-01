@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div class="w-96 flex-column  justify-items-center p-3">
 		Chat Area
-		<div class="w-30ch">
+		<div class="w-full">
 			<MessagesView />
 		</div>
 		<form class="mt-10">

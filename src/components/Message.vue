@@ -1,5 +1,5 @@
 <template>
-	<p class="rounded px-3 py-1" :style="blockStyle">
+	<p class="rounded px-3 py-1 w-full break-words" :style="blockStyle">
 		{{ text }}
 	</p>
 </template>

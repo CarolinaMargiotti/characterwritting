@@ -13,8 +13,8 @@ export default defineComponent({
 </script>
 
 <template>
-	<main class="grid grid-cols-3 gap-10">
-		<div>Scenes</div>
+	<main class="grid grid-cols-3 justify-items-center">
+		<div class="w-full">Scenes</div>
 		<ChatArea />
 		<CharacterCreation />
 	</main>
