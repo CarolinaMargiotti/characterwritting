@@ -18,7 +18,8 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { addCharacter } from "@/util/Characters";
+import { useCharacterStore } from "@/stores/characterStore";
+
 import Button from "@/components/Button.vue";
 
 const characterName = ref("");
@@ -26,14 +27,14 @@ const characterColor = ref("#000");
 const characterImage = ref(null);
 const imageIsLoading = ref(false);
 
-const createCharacter = () => {
-	addCharacter({
+const characterStore = useCharacterStore();
+const createCharacter = async () => {
+	await characterStore.addNewCharacter({
 		name: characterName.value,
 		color: characterColor.value,
 		age: 23,
 		image: characterImage.value,
 	});
-	location.reload();
 }
 
 const handleImageUpload = (event) =>{

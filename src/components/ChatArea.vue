@@ -39,16 +39,19 @@
 import { onMounted, ref, computed } from "vue";
 
 import CharacterMessage from "@/components/CharacterMessage.vue";
-import { getCharactersList } from "@/util/Characters";
 import Button from "./Button.vue";
+import { useCharacterStore } from "@/stores/characterStore";
+import { storeToRefs } from "pinia";
+
+const characterStore = useCharacterStore();
+const {characters} = storeToRefs(characterStore);
 
 const messages = ref([]);
 const textInput = ref("");
-const characters = ref({});
 const characterPicked = ref(0);
 
 onMounted(async ()=>{
-	characters.value = await getCharactersList();
+	await characterStore.getAllCharacters();
 })
 
 const sendNewMessage = () =>{
