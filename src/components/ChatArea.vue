@@ -44,8 +44,4 @@ onMounted(async ()=>{
 const sendNewMessage = () =>{
 	messageStore.newMessage(messageText.value,selected.value)
 }
-
-const characterInfoById = (id)=>{
-	return characterStore.getCharacterById(id);
-}
 </script>
