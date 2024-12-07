@@ -4,7 +4,7 @@
             v-for="(message, index) in messages"
             class="mb-5"
             :key="index"
-            :text="message.text"
+            :text="message.message"
             :color="characterInfoById(message.characterId).color"
             :characterInfo="characterInfoById(message.characterId)"
         />

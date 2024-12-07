@@ -32,13 +32,13 @@ const characterStore = useCharacterStore();
 const {characters} = storeToRefs(characterStore);
 
 const messageStore = useMessageStore();
-const {messages} = storeToRefs(messageStore);
 
 const messageText = ref("");
 const selected = ref(0);
 
 onMounted(async ()=>{
 	await characterStore.getAllCharacters();
+	await messageStore.getAllMessages();
 })
 
 const sendNewMessage = () =>{

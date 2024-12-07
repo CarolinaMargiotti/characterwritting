@@ -582,21 +582,13 @@ video {
   height: 3.5rem;
 }
 
-.h-80vh {
-  height: 80vh;
+.h-70vh {
+  height: 70vh;
 }
 
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
-}
-
-.h-70vh {
-  height: 70vh;
-}
-
-.h-full {
-  height: 100%;
 }
 
 .w-96 {
@@ -682,10 +674,6 @@ video {
   padding: 1rem;
 }
 
-.p-1 {
-  padding: 0.25rem;
-}
-
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -704,11 +692,6 @@ video {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .font-bold {
