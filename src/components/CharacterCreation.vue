@@ -32,7 +32,6 @@ const createCharacter = async () => {
 	await characterStore.addNewCharacter({
 		name: characterName.value,
 		color: characterColor.value,
-		age: 23,
 		image: characterImage.value,
 	});
 }
