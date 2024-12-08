@@ -15,7 +15,7 @@
 				cols="30"
 				v-model="messageText"
 			></textarea>
-			<Button text="Send Message" @clicked="sendNewMessage" />
+			<Button :disabled="isLoading" text="Send Message" @clicked="sendNewMessage" />
 		</form>
 	</div>
 </template>
@@ -32,6 +32,7 @@ const characterStore = useCharacterStore();
 const {characters} = storeToRefs(characterStore);
 
 const messageStore = useMessageStore();
+const {isLoading} = storeToRefs(messageStore);
 
 const messageText = ref("");
 const selected = ref(0);

@@ -1,5 +1,5 @@
 <template>
-	<button class="bg-quarternary p-2 text-black text-sm" @click.prevent="clicked">
+	<button class="bg-quarternary p-2 text-black text-sm" :disabled="disabled" @click.prevent="clicked">
 		{{ text }}
 	</button>
 </template>
@@ -7,10 +7,13 @@
 <script setup>
 import { defineProps, defineEmits } from "vue";
 
-const {text} = defineProps({
+const {text, disabled} = defineProps({
 	text:{
 		default:"",
 		required: true
+	},
+	disabled:{
+		default: false
 	}
 })
 
