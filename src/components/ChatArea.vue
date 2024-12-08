@@ -5,7 +5,7 @@
 			<MessagesView />
 		</div>
 		<form class="mt-2 flex justify-center gap-1">
-			<select v-model="selected" class="p-2">
+			<select ref="characterSelect" v-model="selected" class="p-2">
 				<option v-for="(character,index) in characters" :key="index" :value="character.id">{{ character.name }}</option>
 			</select>
 			<textarea
@@ -37,9 +37,12 @@ const {isLoading} = storeToRefs(messageStore);
 const messageText = ref("");
 const selected = ref(0);
 
+const characterSelect = ref(null);
 onMounted(async ()=>{
 	await characterStore.getAllCharacters();
 	await messageStore.getAllMessages();
+
+	characterSelect.value.selectedIndex = 0;
 })
 
 const sendNewMessage = () =>{
