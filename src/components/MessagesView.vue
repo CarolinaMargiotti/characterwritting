@@ -5,7 +5,7 @@
             class="mb-5"
             :key="index"
             :text="message.message"
-            :color="characterInfoById(message.characterId).color"
+            :color="characterInfoById(message.characterId)?.color"
             :characterInfo="characterInfoById(message.characterId)"
         />
         </div>
