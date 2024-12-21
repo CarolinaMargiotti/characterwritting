@@ -2,7 +2,7 @@
 	<div class="flex flex-col items-end gap-1">
 		<div class="flex items-center gap-2">
 			<div class="py-1 px-2 rounded col-start-2 h-fit" :style="blockStyle">
-				{{ characterInfo.name }}
+				{{ characterInfo?.name }}
 			</div>
 			<img
 			class="rounded-full h-14 w-fit"
@@ -11,7 +11,7 @@
 			/>
 		</div>
 		<Message
-			:color="characterInfo.color"
+			:color="characterInfo?.color"
 			:text="text"
 		></Message>
 	</div>
@@ -29,20 +29,20 @@ const {characterInfo,text} = defineProps({
 })
 
 const textColor = computed(()=>{
-	return getTextColorBasedOnContrast(characterInfo.color);
+	return getTextColorBasedOnContrast(characterInfo?.color);
 });
 
 const blockStyle = computed(()=>{
 	return {
-		backgroundColor: characterInfo.color,
+		backgroundColor: characterInfo?.color,
 		color: textColor.value,
 	};
 })
 
 const imagePath = computed(()=>{
-	if (!characterInfo.image)
+	if (!characterInfo?.image)
 		return `src/assets/characterImages/default.jpg`;
 
-	return characterInfo.image;
+	return characterInfo?.image;
 })
 </script>
